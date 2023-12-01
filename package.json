@@ -5,8 +5,15 @@
     "ng": "ng",
     "start": "ng serve -o",
     "build": "ng build",
+    "build:href": "ng build --base-href ./",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "make:docs": "mkdir docs",
+    "delete:docs": "rimraf docs",
+    "copy:dist-3rd": "copyfiles dist/bases/* ./docs -f",
+    "copy:dist-browser": "copyfiles dist/bases/browser/* ./docs -f",
+    "copy:dist": "npm run copy:dist-3rd && npm run copy:dist-browser",
+    "build:all": "npm run delete:docs && npm run build:href && npm run make:docs && npm run copy:dist"
   },
   "private": true,
   "dependencies": {
